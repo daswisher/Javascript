@@ -1,0 +1,9 @@
+/*This file gives basic information about basic jQuery syntax*/
+
+jQuery uses $() to select elements and specific classes.
+In order to select a specific class. 
+Example: in order to select a class called "nav", we'd use $('.nav') to select it. 
+
+There is a way to also create new elements using the same selector by adding <> around the element. 
+Example: We want to create a new li element, we'd use the following...
+$('<li>')
