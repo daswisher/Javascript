@@ -7,3 +7,13 @@ Example: in order to select a class called "nav", we'd use $('.nav') to select i
 There is a way to also create new elements using the same selector by adding <> around the element. 
 Example: We want to create a new li element, we'd use the following...
 $('<li>')
+
+There is a .text() method that can be used to manipulate the text of an element in a webpage. This is where the selectors become handy. If we create a new element and pass in a string as the parameter, the element will be created with the text inside.
+Example:
+$('<p>').text('This is stuff') 
+^^^Creates a paragraph with the text "This is stuff"^^^
+The same concept applies to existing elements. If there are existing elements and method is passed a string, all of the elements' text will be overwritten with the string that is passed in as a parameter. 
+If there isn't a string passed as a parameter into the .text() method, it will return the text of all of the elements of the type that was selected.
+Example:
+$('p').text()
+^^^This returns the text of all 'p' elements^^^
