@@ -18,6 +18,8 @@ Example:
 $('p').text()
 ^^^This returns the text of all 'p' elements^^^
 
+***Use .val() instead of .text() when dealing with forms(sections where user inputs data)***
+
 The .appendTo() method can be used to create new elements that will be added to a specific block. It can be used in tandem with the .text() method to add the element with text to create the element all in one line of code. It will add the new element to the end of the set.
 On the other hand, there is the .prependTo() method which is essentially the same as the .appendTo() method with the only exception that it adds elements to the beginning of the set instead of the end.
 
@@ -31,3 +33,30 @@ Additional methods:
 .addClass() add CSS class to an element
 .removeClass() removes CSS class to an element
 .toggleClass() add/remove CSS class to an element
+
+
+
+
+
+Using the DOM, there are methods that allow the traversal of elements.
+.next() gets the next sibling of the selected element
+.prev() gets the previous sibling of the selected element
+.children() gets the children of the selected element
+^^^Giving a selected element (i.e. $('p'))as a parameter gets a specific child
+
+
+
+
+
+Effects:
+.slideDown() slides an element down where the parameter is the number of milliseconds it takes the animation to finish
+.slideUp() is the same concept as .slideDown()
+
+***.fade methods take milliseconds as a parameter like .slide methods***
+
+.fadeIn() fades from white canvas to the image
+.fadeOut() fades from image to white canvas 
+
+***.animate is more custom than .slide and .fade***
+.animate() takes two parameters (css property, duration of animation/change)
+
