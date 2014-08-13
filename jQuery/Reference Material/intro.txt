@@ -17,3 +17,17 @@ If there isn't a string passed as a parameter into the .text() method, it will r
 Example:
 $('p').text()
 ^^^This returns the text of all 'p' elements^^^
+
+The .appendTo() method can be used to create new elements that will be added to a specific block. It can be used in tandem with the .text() method to add the element with text to create the element all in one line of code. It will add the new element to the end of the set.
+On the other hand, there is the .prependTo() method which is essentially the same as the .appendTo() method with the only exception that it adds elements to the beginning of the set instead of the end.
+
+.remove() [as the name implies] will remove an element from a set.
+
+Additional methods:
+.hide() an element
+.show() an element
+.toggle() hide/show an element
+
+.addClass() add CSS class to an element
+.removeClass() removes CSS class to an element
+.toggleClass() add/remove CSS class to an element
