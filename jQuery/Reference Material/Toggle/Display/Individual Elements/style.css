@@ -1,0 +1,15 @@
+body {
+	background-color: gray;
+	color: white;
+}
+
+.content {
+	background-color: black;
+	color: gray;
+}
+
+.active-content {
+	background-color: white;
+	color: black;
+}
+

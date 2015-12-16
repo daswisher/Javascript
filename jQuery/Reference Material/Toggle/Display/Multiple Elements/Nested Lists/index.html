@@ -1,0 +1,42 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>Nested Lists</title>
+		<link rel="stylesheet" href="style.css" />
+		<script type="text/javascript" src="jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="script.js"></script>
+	</head>
+
+	<body>
+		<ul class="menu">
+			<li>
+				<a class="coffee-menu" href="#">Coffee</a>
+				<ul class="menu-contents coffee-contents">
+					<li>Light Roast</li>
+					<li>Medium Roast</li>
+					<li>Dark Roast</li>
+				</ul>
+			</li>
+
+			<li>
+				<a class="tea-menu" href="#">Tea</a>
+				<ul class="menu-contents tea-contents">
+					<li>Green</li>
+					<li>Mint</li>
+					<li>Black</li>
+				</ul>
+			</li>
+		</ul>
+
+		<div class="container">
+			<a class="test-menu" href="#">Test</a>
+			<p class="test-contents">Test 1 is a success!</p>
+		</div>
+
+		<div class="container">
+			<a class="menu-contents test2-menu" href="#">Test 2</a>
+			<p class="menu-contents test2-contents">Test 2 is a success!</p>
+		</div>			
+	</body>
+</html>
