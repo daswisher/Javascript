@@ -29,6 +29,7 @@
 	        }
 	    }
 
+	    //Used to update a value in storage
 	    function update_storage(){
 	    	if((this.getAttribute('type') == 'checkbox') || (this.getAttribute('type') == 'radio')){
 	    		window.localStorage.setItem(this.id, this.checked);
@@ -36,6 +37,20 @@
 	    	else{
 		    	window.localStorage.setItem(this.id, this.value);
 		    }
+	    }
+
+	    //Used to update an html element if its value is changed in storage
+	    function update_element(elementID){
+	    	try{
+		    	var elementToUpdate = document.getElementById(elementID);
+		    	if((elementToUpdate.getAttribute('type') == 'checkbox') || (elementToUpdate.getAttribute('type') == 'radio')){
+		    		elementToUpdate.checked = (window.localStorage.getItem(elementID) === "true");
+		    	}
+		    	else{
+			    	elementToUpdate.value = window.localStorage.getItem(elementID);
+			    }
+			}
+			finally{}
 	    }
 	</script>
 </head>
@@ -47,6 +62,8 @@
 
 	<script type="text/javascript">
 		if (storageAvailable('localStorage')) {
+
+			//Add input event listeners to html elements; Update their value if there is a pre-existing value
 			var dataInput = document.getElementById('dataBox');
 			dataInput.value = window.localStorage.getItem(dataInput.id);
 			dataInput.oninput = update_storage;
@@ -58,11 +75,16 @@
 			var radioInput = document.getElementById('dataRadio');
 			radioInput.checked = (window.localStorage.getItem(radioInput.id) === "true");
 			radioInput.oninput = update_storage;
+
+			//Add listener for any changes to storage. Update html values if their correspondin data changes in storage.
+			//This is useful for synchronizing data across tabs.
+			window.addEventListener('storage', function(e) {
+				update_element(e.key);
+			});
 		}
 		else {
 			// Too bad, no localStorage for us
 		}
 	</script>
-
 </body>
 </html>
