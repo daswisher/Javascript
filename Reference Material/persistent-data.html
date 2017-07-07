@@ -29,38 +29,35 @@
 	        }
 	    }
 
-	    function update_storage(inputItem){
-	    	console.log(inputItem.id, inputItem.value, inputItem.type);
-	    	localStorage.setItem(inputItem.id, inputItem.value);
+	    function update_storage(){
+	    	if((this.getAttribute('type') == 'checkbox') || (this.getAttribute('type') == 'radio')){
+	    		window.localStorage.setItem(this.id, this.checked);
+	    	}
+	    	else{
+		    	window.localStorage.setItem(this.id, this.value);
+		    }
 	    }
 	</script>
 </head>
 
 <body>
 	<input id="dataBox" type="text" />
-	<input id="checkbox" type="checkbox" />
+	<input id="dataCheckbox" type="checkbox" />
+	<input id="dataRadio" type="radio" value="Option" />
 
 	<script type="text/javascript">
 		if (storageAvailable('localStorage')) {
-			// Yippee! We can use localStorage awesomeness
-			console.log("Storage is available.");
 			var dataInput = document.getElementById('dataBox');
-			dataInput.value = localStorage.getItem(dataInput.id);
-			// dataInput.oninput = update_storage(dataInput);
+			dataInput.value = window.localStorage.getItem(dataInput.id);
+			dataInput.oninput = update_storage;
 
-			/*
-			dataInput.addEventListener("input", function (e) {
-				console.log("change: ", this.id, this.value);
-				localStorage.setItem(this.id, this.value);
-			});
-			*/
+			var checkboxInput = document.getElementById('dataCheckbox');
+			checkboxInput.checked = (window.localStorage.getItem(checkboxInput.id) === "true");
+			checkboxInput.oninput = update_storage;
 
-			dataInput.addEventListener("input", update_storage(dataInput), true);
-
-			var checkboxInput = document.getElementById('checkbox');
-			checkboxInput.value = localStorage.getItem(checkboxInput.id);
-			checkboxInput.onclick = update_storage(checkboxInput);
-
+			var radioInput = document.getElementById('dataRadio');
+			radioInput.checked = (window.localStorage.getItem(radioInput.id) === "true");
+			radioInput.oninput = update_storage;
 		}
 		else {
 			// Too bad, no localStorage for us
