@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Persistent Data</title>
+	<meta charset="utf-8">
+
+	<script>
+		function storageAvailable(type) {
+			try {
+				var storage = window[type],
+				x = '__storage_test__';
+				storage.setItem(x, x);
+				storage.removeItem(x);
+				return true;
+			}
+			catch(e) {
+				return e instanceof DOMException && (
+	            // everything except Firefox
+	            e.code === 22 ||
+	            // Firefox
+	            e.code === 1014 ||
+	            // test name field too, because code might not be present
+	            // everything except Firefox
+	            e.name === 'QuotaExceededError' ||
+	            // Firefox
+	            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+	            // acknowledge QuotaExceededError only if there's something already stored
+	            storage.length !== 0;
+	        }
+	    }
+
+	    function update_storage(inputItem){
+	    	console.log(inputItem.id, inputItem.value, inputItem.type);
+	    	localStorage.setItem(inputItem.id, inputItem.value);
+	    }
+	</script>
+</head>
+
+<body>
+	<input id="dataBox" type="text" />
+	<input id="checkbox" type="checkbox" />
+
+	<script type="text/javascript">
+		if (storageAvailable('localStorage')) {
+			// Yippee! We can use localStorage awesomeness
+			console.log("Storage is available.");
+			var dataInput = document.getElementById('dataBox');
+			dataInput.value = localStorage.getItem(dataInput.id);
+			// dataInput.oninput = update_storage(dataInput);
+
+			/*
+			dataInput.addEventListener("input", function (e) {
+				console.log("change: ", this.id, this.value);
+				localStorage.setItem(this.id, this.value);
+			});
+			*/
+
+			dataInput.addEventListener("input", update_storage(dataInput), true);
+
+			var checkboxInput = document.getElementById('checkbox');
+			checkboxInput.value = localStorage.getItem(checkboxInput.id);
+			checkboxInput.onclick = update_storage(checkboxInput);
+
+		}
+		else {
+			// Too bad, no localStorage for us
+		}
+	</script>
+
+</body>
+</html>
